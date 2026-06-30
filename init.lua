@@ -456,7 +456,7 @@ do
       { name = 'Buffers             <leader><leader>', action = 'Telescope buffers', section = 'Shortcuts' },
       { name = 'Keymaps             <leader>sk', action = 'Telescope keymaps', section = 'Shortcuts' },
       { name = 'Commands            <leader>sc', action = 'Telescope commands', section = 'Shortcuts' },
-      { name = 'Git diff branch     <leader>gd', action = 'lua vim.api.nvim_feedkeys(vim.keycode("<leader>gd"), "m", false)', section = 'Git' },
+      { name = 'Diff against master  <leader>gd', action = 'CodeDiff master...', section = 'Git' },
       { name = 'Edit Neovim config  <leader>sn', action = 'Telescope find_files cwd=' .. vim.fn.stdpath 'config', section = 'Config' },
       starter.sections.builtin_actions(),
       starter.sections.recent_files(5, false),
