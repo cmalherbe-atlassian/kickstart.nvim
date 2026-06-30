@@ -445,6 +445,28 @@ do
   ---@diagnostic disable-next-line: duplicate-set-field
   statusline.section_location = function() return '%2l:%-2v' end
 
+  -- Start screen with common shortcuts.
+  local starter = require 'mini.starter'
+  starter.setup {
+    header = 'Neovim',
+    items = {
+      { name = 'Find files          <leader>sf', action = 'Telescope find_files', section = 'Shortcuts' },
+      { name = 'Search text         <leader>sg', action = 'Telescope live_grep', section = 'Shortcuts' },
+      { name = 'Recent files        <leader>s.', action = 'Telescope oldfiles', section = 'Shortcuts' },
+      { name = 'Buffers             <leader><leader>', action = 'Telescope buffers', section = 'Shortcuts' },
+      { name = 'Keymaps             <leader>sk', action = 'Telescope keymaps', section = 'Shortcuts' },
+      { name = 'Commands            <leader>sc', action = 'Telescope commands', section = 'Shortcuts' },
+      { name = 'Git diff branch     <leader>gd', action = 'lua vim.api.nvim_feedkeys(vim.keycode("<leader>gd"), "m", false)', section = 'Git' },
+      { name = 'Edit Neovim config  <leader>sn', action = 'Telescope find_files cwd=' .. vim.fn.stdpath 'config', section = 'Config' },
+      starter.sections.builtin_actions(),
+      starter.sections.recent_files(5, false),
+    },
+    content_hooks = {
+      starter.gen_hook.adding_bullet(),
+      starter.gen_hook.padding(3, 2),
+    },
+  }
+
   -- ... and there is more!
   --  Check out: https://github.com/nvim-mini/mini.nvim
 end
